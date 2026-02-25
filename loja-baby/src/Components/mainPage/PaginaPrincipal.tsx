@@ -1,51 +1,15 @@
 import type { FC } from "react";
 import { listaProdutos } from "../../sampleProdutos";
+import Navbar from "../Navbar/Navbar";
 import ProdutoCard from "../Card/ProdutoCard";
+import "./Layout.css";
 
 const PaginaPrincipal: FC = () => {
   return (
-    <div>
-      <header
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "1rem 1.25rem",
-          borderBottom: "1px solid #eaeaea",
-          background: "#fafafa",
-        }}
-      >
-        <div style={{ fontWeight: 700, color: "#222" }}>Loja Baby</div>
-        <nav>
-          <ul
-            style={{
-              display: "flex",
-              gap: "1rem",
-              listStyle: "none",
-              margin: 0,
-              padding: 0,
-            }}
-          >
-            <li>
-              <a href="#" style={{ color: "#333", textDecoration: "none" }}>
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" style={{ color: "#333", textDecoration: "none" }}>
-                Carrinho
-              </a>
-            </li>
-            <li>
-              <a href="#" style={{ color: "#333", textDecoration: "none" }}>
-                Filtro
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </header>
+    <div className="layout">
+      <Navbar />
 
-      <main style={{ padding: 20 }}>
+      <main className="layout__main">
         <h2 style={{ marginBottom: 12, color: "#222" }}>Produtos</h2>
 
         <div

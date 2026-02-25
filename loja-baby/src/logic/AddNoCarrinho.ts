@@ -1,7 +1,7 @@
 import type { Produto, ItemCarrinho } from "../types";
 
 // Adicionar ou incrementar quantidade
-function adicionarAoCarrinho(
+export function adicionarAoCarrinho(
     carrinhoAtual: ItemCarrinho[], 
     produto: Produto
 ): ItemCarrinho[] {
@@ -19,6 +19,6 @@ function adicionarAoCarrinho(
 }
 
 // Calcular total usando reduce
-const calcularTotal = (itens: ItemCarrinho[]): number => {
+export const calcularTotal = (itens: ItemCarrinho[]): number => {
     return itens.reduce((acc, item) => acc + (item.preco * item.quantidade), 0);
 };

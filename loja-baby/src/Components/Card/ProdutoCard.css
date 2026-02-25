@@ -24,6 +24,8 @@
 .produto-card__body {
   padding: 12px;
   color: #333; /* texto principal */
+  display: flex;
+  flex-direction: column;
 }
 
 .produto-card__title {
@@ -43,6 +45,37 @@
   font-weight: 700;
   font-size: 16px;
   color: #111;
+  margin-bottom: 12px;
+}
+
+.produto-card__btn-carrinho {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #ff6b6b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 200ms ease, transform 100ms ease;
+}
+
+.produto-card__btn-carrinho:hover {
+  background: #ff5252;
+  transform: scale(1.02);
+}
+
+.produto-card__btn-carrinho:active {
+  transform: scale(0.98);
+}
+
+.produto-card__icon-carrinho {
+  width: 18px;
+  height: 18px;
 }
 
 /* Hover: crescer levemente com transição */
@@ -54,3 +87,4 @@
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
   cursor: pointer;
 }
+

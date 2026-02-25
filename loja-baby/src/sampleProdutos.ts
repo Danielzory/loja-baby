@@ -26,7 +26,7 @@ export const listaProdutos: Produto[] = [
         preco: 55.00,
         categoria: "menino",
         tamanho: "6",
-        imagemUrl: "https://images.unsplash.com/photo-1519278444390-66a15929f8ca?q=80&w=800&auto=format&fit=crop",
+        imagemUrl: "https://unsplash.com/photos/rear-view-of-confident-golfer-holding-golf-ball-and-driver-while-standing-on-golf-course-and-looking-over-shoulder-LBDG7fiFfxA",
         estoque: 15
     },
     {
@@ -53,7 +53,7 @@ export const listaProdutos: Produto[] = [
         preco: 69.90,
         categoria: "menino",
         tamanho: "M",
-        imagemUrl: "https://images.unsplash.com/photo-1503944583220-8150b7e3c3a1?q=80&w=800&auto=format&fit=crop",
+        imagemUrl: "https://unsplash.com/photos/boy-in-blue-crew-neck-t-shirt-standing-near-green-plant-WNQLkBUV68k",
         estoque: 7
     },
     {
