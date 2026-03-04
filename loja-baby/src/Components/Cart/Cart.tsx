@@ -1,5 +1,7 @@
 import type { FC } from "react";
 import { useCarrinho } from "../../context/CarrinhoContext";
+import { gerarMensagemWhatsapp } from "../../logic/Finalizacao";
+import type { Pedido } from "../../logic/Finalizacao";
 import "./Cart.css";
 
 const Cart: FC = () => {
@@ -14,6 +16,25 @@ const Cart: FC = () => {
       style: "currency",
       currency: "BRL",
     });
+  };
+
+  const handleFinalizar = () => {
+    // build a simple pedido object; client and payment details can be extended later
+    const pedido: Pedido = {
+      itens,
+      total: valorTotal,
+      metodoPagamento: "pix",
+      cliente: {
+        nome: "",
+        endereco: "",
+      },
+    };
+
+    const mensagem = gerarMensagemWhatsapp(pedido);
+    const url = `https://wa.me/5581986302720?text=${encodeURIComponent(
+      mensagem
+    )}`;
+    window.open(url, "_blank");
   };
 
   return (
@@ -92,7 +113,10 @@ const Cart: FC = () => {
             </div>
           </div>
 
-          <button className="carrinho__btn-finalizar">
+          <button
+            className="carrinho__btn-finalizar"
+            onClick={handleFinalizar}
+          >
             Finalizar Compra
           </button>
         </>

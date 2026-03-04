@@ -19,11 +19,11 @@ export function gerarMensagemWhatsapp(pedido: Pedido): string {
         .map(item => `${item.quantidade}x ${item.nome} - R$ ${item.preco}`)
         .join("\n");
 
-    return `Olá! Gostaria de finalizar o pedido:
+    return `*Olá! Gostaria de finalizar o pedido:*
 ---
 ${resumoItens}
 ---
-Total: R$ ${pedido.total}
+*Total: R$ ${pedido.total}*
 Pagamento: ${pedido.metodoPagamento}
 Cliente: ${pedido.cliente.nome}
 Endereço: ${pedido.cliente.endereco}`;

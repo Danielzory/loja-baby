@@ -1,4 +1,4 @@
-import type { Produto } from '../types';
+import type { Produto } from '../../types';
 // Props para a página principal
 export type PaginaPrincipalProps = {
     produtos: Produto[];

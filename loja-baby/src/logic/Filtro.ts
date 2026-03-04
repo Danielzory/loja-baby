@@ -2,7 +2,7 @@
  * T é o tipo do objeto (Produto)
  * K é uma chave que obrigatoriamente existe dentro de T
  */
-function filtrarProdutos<T, K extends keyof T>(
+export function filtrarProdutos<T, K extends keyof T>(
     lista: T[], 
     chave: K, 
     valor: T[K]
