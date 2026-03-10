@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import type { Produto } from "../../types";
 import { useCarrinho } from "../../context/CarrinhoContext";
-import "./ProdutoCard.css";
+import styles from "./ProdutoCard.module.css";
 
 interface Props {
   produto: Produto;
@@ -20,24 +20,24 @@ const ProdutoCard: FC<Props> = ({ produto }) => {
   };
 
   return (
-    <article className="produto-card" aria-label={`Produto ${produto.nome}`}>
-      <div className="produto-card__image">
+    <article className={styles.container} aria-label={`Produto ${produto.nome}`}>
+      <div className={styles.image}>
         <img
-          className="produto-card__img"
+          className={styles.img}
           src={produto.imagemUrl}
           alt={produto.nome}
         />
       </div>
 
-      <div className="produto-card__body">
-        <h3 className="produto-card__title">{produto.nome}</h3>
-        <p className="produto-card__meta">Categoria: {produto.categoria}</p>
-        <p className="produto-card__meta">Tamanho: {produto.tamanho}</p>
+      <div className={styles.body}>
+        <h3 className={styles.title}>{produto.nome}</h3>
+        <p className={styles.meta}>Categoria: {produto.categoria}</p>
+        <p className={styles.meta}>Tamanho: {produto.tamanho}</p>
 
-        <div className="produto-card__price">{precoFormatado}</div>
+        <div className={styles.price}>{precoFormatado}</div>
 
         <button
-          className="produto-card__btn-carrinho"
+          className={styles.btnCarrinho}
           onClick={handleAdicionarAoCarrinho}
           aria-label={`Adicionar ${produto.nome} ao carrinho`}
         >
@@ -51,7 +51,7 @@ const ProdutoCard: FC<Props> = ({ produto }) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="produto-card__icon-carrinho"
+            className={styles.iconCarrinho}
           >
             <circle cx="9" cy="21" r="1" />
             <circle cx="20" cy="21" r="1" />

@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useCarrinho } from "../../context/CarrinhoContext";
-import "./Navbar.css";
+import styles from "./Navbar.module.css";
 
 const Navbar: FC = () => {
   const location = useLocation();
@@ -10,37 +10,37 @@ const Navbar: FC = () => {
   const totalQuantidade = itens.reduce((acc, i) => acc + i.quantidade, 0);
 
   return (
-    <header className="navbar">
-      <div className="navbar__inner">
-        <Link to="/" className="navbar__logo">
+    <header className={styles.container}>
+      <div className={styles.inner}>
+        <Link to="/" className={styles.logo}>
           Loja Baby
         </Link>
 
-        <nav className="navbar__nav">
-          <ul className="navbar__list">
+        <nav className={styles.nav}>
+          <ul className={styles.list}>
             <li>
               <Link
                 to="/"
-                className={`navbar__link ${location.pathname === "/" ? "navbar__link--active" : ""}`}
+                className={`${styles.link} ${location.pathname === "/" ? styles.linkActive : ""}`}
               >
                 Home
               </Link>
             </li>
             <li>
-              <a href="#" className="navbar__link">
+              <a href="#" className={styles.link}>
                 Filtro
               </a>
             </li>
           </ul>
         </nav>
 
-        <div className="navbar__actions">
+        <div className={styles.actions}>
           <Link
             to="/carrinho"
-            className={`navbar__link navbar__cart ${location.pathname === "/carrinho" ? "navbar__link--active" : ""}`}
+            className={`${styles.link} ${styles.cart} ${location.pathname === "/carrinho" ? styles.linkActive : ""}`}
           >
             Carrinho
-            <span className="navbar__cart-badge" aria-hidden>{totalQuantidade}</span>
+            <span className={styles.cartBadge} aria-hidden>{totalQuantidade}</span>
           </Link>
         </div>
       </div>

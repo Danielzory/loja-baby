@@ -2,14 +2,14 @@ import type { FC } from "react";
 import { listaProdutos } from "../../sampleProdutos";
 import Navbar from "../Navbar/Navbar";
 import ProdutoCard from "../Card/ProdutoCard";
-import "./Layout.css";
+import styles from "./Layout.module.css";
 
 const PaginaPrincipal: FC = () => {
   return (
-    <div className="layout">
+    <div className={styles.container}>
       <Navbar />
 
-      <main className="layout__main">
+      <main className={styles.main}>
         <h2 style={{ marginBottom: 12, color: "#222" }}>Produtos</h2>
 
         <div

@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { useCarrinho } from "../../context/CarrinhoContext";
 import { gerarMensagemWhatsapp } from "../../logic/Finalizacao";
 import type { Pedido } from "../../logic/Finalizacao";
-import "./Cart.css";
+import styles from "./Cart.module.css";
 
 const Cart: FC = () => {
   const { itens, valorTotal, removerProduto } = useCarrinho();
@@ -38,42 +38,42 @@ const Cart: FC = () => {
   };
 
   return (
-    <aside className="carrinho">
-      <div className="carrinho__header">
-        <h2 className="carrinho__titulo">Carrinho</h2>
-        <span className="carrinho__badge">{itens.length}</span>
+    <aside className={styles.container}>
+      <div className={styles.header}>
+        <h2 className={styles.title}>Carrinho</h2>
+        <span className={styles.badge}>{itens.length}</span>
       </div>
 
       {itens.length === 0 ? (
-        <div className="carrinho__vazio">
+        <div className={styles.empty}>
           <p>Seu carrinho está vazio</p>
         </div>
       ) : (
         <>
-          <div className="carrinho__itens">
+          <div className={styles.items}>
             {itens.map((item) => (
-              <div key={item.id} className="carrinho__item">
-                <div className="carrinho__item-info">
-                  <h3 className="carrinho__item-nome">{item.nome}</h3>
-                  <p className="carrinho__item-detalhes">
+              <div key={item.id} className={styles.item}>
+                <div className={styles.itemInfo}>
+                  <h3 className={styles.itemNome}>{item.nome}</h3>
+                  <p className={styles.itemDetalhes}>
                     Tamanho: <strong>{item.tamanho}</strong>
                   </p>
-                  <div className="carrinho__item-precos">
-                    <span className="carrinho__item-unitario">
+                  <div style={{ fontSize: "12px", color: "#999" }}>
+                    <span>
                       {formatarPreco(item.preco)}
                     </span>
-                    <span className="carrinho__item-quantidade">
+                    <span>
                       × {item.quantidade}
                     </span>
                   </div>
                 </div>
 
-                <div className="carrinho__item-coluna-direita">
-                  <div className="carrinho__item-subtotal">
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "8px" }}>
+                  <div className={styles.itemPreco}>
                     {formatarPreco(item.preco * item.quantidade)}
                   </div>
                   <button
-                    className="carrinho__item-remover"
+                    className={styles.itemButtonRemove}
                     onClick={() => handleRemover(item.id)}
                     aria-label={`Remover ${item.nome} do carrinho`}
                     title="Remover do carrinho"
@@ -100,21 +100,17 @@ const Cart: FC = () => {
             ))}
           </div>
 
-          <div className="carrinho__resumo">
-            <div className="carrinho__linha-resumo">
-              <span>Subtotal:</span>
-              <span>{formatarPreco(valorTotal)}</span>
-            </div>
-            <div className="carrinho__linha-total">
-              <span className="carrinho__label-total">Total:</span>
-              <span className="carrinho__valor-total">
+          <div style={{ padding: "16px", borderTop: "1px solid #f0f0f0", width: "100%" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+              <span style={{ fontSize: "14px", fontWeight: "600", color: "#222" }}>Total:</span>
+              <span style={{ fontSize: "18px", fontWeight: "700", color: "#111" }}>
                 {formatarPreco(valorTotal)}
               </span>
             </div>
           </div>
 
           <button
-            className="carrinho__btn-finalizar"
+            className={styles.footerButton}
             onClick={handleFinalizar}
           >
             Finalizar Compra

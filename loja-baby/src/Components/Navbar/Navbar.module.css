@@ -1,4 +1,4 @@
-.navbar {
+.container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,7 +13,7 @@
   min-width: 70vw;
 }
 
-.navbar__logo {
+.logo {
   font-weight: 700;
   color: #222;
   text-decoration: none;
@@ -22,17 +22,17 @@
   font-size: 16px;
 }
 
-.navbar__logo:hover {
+.logo:hover {
   color: #ff6b6b;
 }
 
-.navbar__nav {
+.nav {
   flex: 1;
   display: flex;
   justify-content: center;
 }
 
-.navbar__inner {
+.inner {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -41,21 +41,21 @@
   margin: 0 auto;
 }
 
-.navbar__actions {
+.actions {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   min-width: 120px;
 }
 
-.navbar__cart {
+.cart {
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 8px;
 }
 
-.navbar__cart-badge {
+.cartBadge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -70,7 +70,7 @@
   margin-left: 6px;
 }
 
-.navbar__list {
+.list {
   display: flex;
   gap: 1rem;
   list-style: none;
@@ -78,7 +78,7 @@
   padding: 0;
 }
 
-.navbar__link {
+.link {
   color: #333;
   text-decoration: none;
   font-size: 14px;
@@ -87,19 +87,19 @@
   padding-bottom: 4px;
 }
 
-.navbar__link:hover {
+.link:hover {
   color: #ff6b6b;
 }
 
-.navbar__link--active {
+.linkActive {
   color: #ff6b6b;
   font-weight: 600;
 }
 
-.navbar__link--active::after {
+.linkActive::after {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: -4px;
   left: 0;
   right: 0;
   height: 2px;

@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CarrinhoProvider } from "./context/CarrinhoContext";
 import PaginaPrincipal from "./Components/mainPage/PaginaPrincipal.tsx";
