@@ -73,5 +73,68 @@ export const listaProdutos: Produto[] = [
         tamanho: "8",
         imagemUrl: "https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?q=80&w=800&auto=format&fit=crop",
         estoque: 4
+    },
+    {
+        id: crypto.randomUUID(),
+        nome: "Sapato Social Mini Lord",
+        preco: 115.00,
+        categoria: "menino",
+        tamanho: "4",
+        imagemUrl: "https://images.unsplash.com/photo-1514989143154-897c596cca0f?q=80&w=800&auto=format&fit=crop",
+        estoque: 6
+    },
+    {
+        id: crypto.randomUUID(),
+        nome: "Macacão Plush Coelhinho",
+        preco: 98.90,
+        categoria: "unissex",
+        tamanho: "1",
+        imagemUrl: "https://images.unsplash.com/photo-1522771930-78848d9293e8?q=80&w=800&auto=format&fit=crop",
+        estoque: 14
+    },
+    {
+        id: crypto.randomUUID(),
+        nome: "Saia Tutu Bailarina",
+        preco: 59.00,
+        categoria: "menina",
+        tamanho: "3",
+        imagemUrl: "https://images.unsplash.com/photo-1519235106638-30cc49fd5253?q=80&w=800&auto=format&fit=crop",
+        estoque: 9
+    },
+    {
+        id: crypto.randomUUID(),
+        nome: "Camiseta Dinossauro Adventure",
+        preco: 42.00,
+        categoria: "menino",
+        tamanho: "6",
+        imagemUrl: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?q=80&w=800&auto=format&fit=crop",
+        estoque: 25
+    },
+    {
+        id: crypto.randomUUID(),
+        nome: "Blusa Moletom Candy Color",
+        preco: 85.00,
+        categoria: "menina",
+        tamanho: "8",
+        imagemUrl: "https://images.unsplash.com/photo-1621451537084-482c73073a0f?q=80&w=800&auto=format&fit=crop",
+        estoque: 11
+    },
+    {
+        id: crypto.randomUUID(),
+        nome: "Bermuda Cargo Explorer",
+        preco: 64.90,
+        categoria: "menino",
+        tamanho: "4",
+        imagemUrl: "https://images.unsplash.com/photo-1519457431-75850a5d8920?q=80&w=800&auto=format&fit=crop",
+        estoque: 13
+    },
+    {
+        id: crypto.randomUUID(),
+        nome: "Touca e Luva Soft Winter",
+        preco: 35.00,
+        categoria: "unissex",
+        tamanho: "1",
+        imagemUrl: "https://images.unsplash.com/photo-1540479859555-17af45c78602?q=80&w=800&auto=format&fit=crop",
+        estoque: 30
     }
 ];

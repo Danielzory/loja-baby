@@ -12,16 +12,12 @@ const PaginaPrincipal: FC = () => {
       <main className={styles.main}>
         <h2 style={{ marginBottom: 12, color: "#222" }}>Produtos</h2>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "2rem",
-          }}
-        >
-          {listaProdutos.map((p) => (
-            <ProdutoCard key={p.id} produto={p} />
-          ))}
+        <div style={{ width: "80%", margin: "0 auto" }}>
+          <div className={styles.produtosGrid}>
+            {listaProdutos.map((p) => (
+              <ProdutoCard key={p.id} produto={p} />
+            ))}
+          </div>
         </div>
       </main>
     </div>

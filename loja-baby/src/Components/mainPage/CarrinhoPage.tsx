@@ -8,11 +8,9 @@ const CarrinhoPage: FC = () => {
     <div className={styles.container}>
       <Navbar />
 
-      <main className={styles.main}>
+      <main className={styles.main} style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
         <h1 style={{ color: "#222", marginBottom: "2rem" }}>Meu Carrinho</h1>
-        <div style={{ maxWidth: "600px" }}>
-          <Cart />
-        </div>
+        <Cart />
       </main>
     </div>
   );

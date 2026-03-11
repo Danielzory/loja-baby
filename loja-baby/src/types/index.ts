@@ -27,3 +27,39 @@ export interface CarrinhoContextType {
     adicionarProduto: (produto: Produto) => void;
     removerProduto: (id: string) => void;
 }
+
+// Schema completo para Cadastro (Sign Up)
+export const UserSchema = z.object({
+    id: z.string().uuid().optional(), // Opcional porque no cadastro o ID ainda não existe
+    nome: z.string()
+        .min(3, "O nome deve ter pelo menos 3 caracteres")
+        .max(50, "Nome muito longo"),
+    email: z.string()
+        .email("Insira um e-mail válido"),
+    telefone: z.string()
+        .min(10, "Telefone inválido (mínimo 10 dígitos)")
+        .regex(/^\d+$/, "O telefone deve conter apenas números"), // Garante que não entrem letras
+    senha: z.string()
+        .min(6, "A senha deve ter no mínimo 6 caracteres")
+});
+
+// Inferindo o tipo para o TypeScript (PascalCase para seguir o padrão)
+export type User = z.infer<typeof UserSchema>;
+
+// Schema específico para Login (Reaproveitando campos do UserSchema)
+export const LoginSchema = UserSchema.pick({
+    email: true,
+    senha: true
+});
+
+// Tipo para o formulário de Login
+export type LoginData = z.infer<typeof LoginSchema>;
+
+//Interface para o contexto de autenticação
+export interface AuthContextType {
+  usuario: User | null;
+  estaAutenticado: boolean;
+  login: (dados: LoginData) => Promise<void>;
+  logout: () => void;
+  carregando: boolean;
+}
