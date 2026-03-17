@@ -27,6 +27,14 @@ const Navbar: FC = () => {
               </Link>
             </li>
             <li>
+              <Link
+                to="/login"
+                className={`${styles.link} ${location.pathname === "/login" ? styles.linkActive : ""}`}
+              >
+                Login
+              </Link>
+            </li>
+            <li>
               <a href="#" className={styles.link}>
                 Filtro
               </a>

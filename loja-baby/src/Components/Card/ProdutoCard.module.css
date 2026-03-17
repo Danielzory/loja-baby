@@ -7,6 +7,7 @@
   background: #fff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
   transition: transform 180ms ease, box-shadow 180ms ease;
+  font-family: 'Onest', sans-serif;
 }
 
 @media (max-width: 768px) {
