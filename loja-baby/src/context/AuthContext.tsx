@@ -39,9 +39,10 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       // Na semana que vem, aqui entrará o fetch para o seu banco
       const usuarioLogado: User = {
         id: crypto.randomUUID(),
-        nome: "Usuário Teste", // Nome fixo até termos o cadastro
+        nome: "Daniel Teste", // Nome fixo até termos o cadastro
         email: dados.email,
         telefone: "81999999999",
+        endereco: "Rua do Teste, 123", // campo obrigatório no schema de usuário
         senha: "" // Nunca guardamos a senha no estado/storage por segurança
       };
 

@@ -40,7 +40,9 @@ export const UserSchema = z.object({
         .min(10, "Telefone inválido (mínimo 10 dígitos)")
         .regex(/^\d+$/, "O telefone deve conter apenas números"), // Garante que não entrem letras
     senha: z.string()
-        .min(6, "A senha deve ter no mínimo 6 caracteres")
+        .min(6, "A senha deve ter no mínimo 6 caracteres"),
+    endereco: z.string()
+        .min(5, "O endereço deve ter pelo menos 5 caracteres")    
 });
 
 // Inferindo o tipo para o TypeScript (PascalCase para seguir o padrão)

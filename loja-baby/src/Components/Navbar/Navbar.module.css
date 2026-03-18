@@ -1,79 +1,53 @@
+
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.25rem;
+  justify-content: center; /* Centraliza o .inner */
+  padding: 0.8rem 1.25rem;
   border-bottom: 1px solid #eaeaea;
   background: #fafafa;
   position: sticky;
   top: 0;
   z-index: 100;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-  max-width: 100%;
-  min-width: 70vw;
+  width: 100%;
   font-family: 'Onest', sans-serif;
 }
 
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  gap: 1.5rem;
+}
+
+/* LOGO - Agora com a fonte Bangers e sua cor Ciano */
 .logo {
-  font-weight: 700;
-  color: #222;
+  font-family: 'Bangers', system-ui;
+  font-size: 1.8rem;
+  color: #009494;
   text-decoration: none;
   cursor: pointer;
-  transition: color 200ms ease;
-  font-size: 16px;
+  transition: transform 200ms ease;
+  white-space: nowrap;
 }
 
 .logo:hover {
-  color: #ff6b6b;
+  transform: scale(1.05);
 }
 
+/* NAVEGAÇÃO CENTRAL */
 .nav {
   flex: 1;
   display: flex;
   justify-content: center;
 }
 
-.inner {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.actions {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  min-width: 120px;
-}
-
-.cart {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.cartBadge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 18px;
-  height: 18px;
-  padding: 0 6px;
-  background: #ff6b6b;
-  color: #fff;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  margin-left: 6px;
-}
-
 .list {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -83,6 +57,7 @@
   color: #333;
   text-decoration: none;
   font-size: 14px;
+  font-weight: 500;
   transition: color 200ms ease;
   position: relative;
   padding-bottom: 4px;
@@ -105,4 +80,90 @@
   right: 0;
   height: 2px;
   background: #ff6b6b;
+}
+
+/* AÇÕES À DIREITA (Usuário + Carrinho) */
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.2rem;
+  min-width: fit-content;
+}
+
+/* ÁREA DO USUÁRIO */
+.userItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-right: 1px solid #ddd;
+  padding-right: 1.2rem;
+  white-space: nowrap;
+}
+
+.welcome {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.welcome strong {
+  color: #009494; 
+  font-weight: 700;
+}
+
+.logoutBtn {
+  background: none;
+  border: 1px solid #ff6b6b; 
+  color: #ff6b6b;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logoutBtn:hover {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+/* CARRINHO */
+.cart {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.cartBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  background: #ff6b6b; 
+  color: #fff;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-left: 2px;
+}
+
+/* RESPONSIVIDADE BÁSICA */
+@media (max-width: 768px) {
+  .welcome {
+    display: none; /* Esconde o "Olá, Nome" em telas pequenas para não apertar */
+  }
+  
+  .userItem {
+    padding-right: 0.8rem;
+    gap: 5px;
+  }
+  
+  .list {
+    gap: 1rem;
+  }
 }
