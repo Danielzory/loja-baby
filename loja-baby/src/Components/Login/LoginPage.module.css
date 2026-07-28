@@ -130,3 +130,12 @@
   color: #ff6b6b; 
   text-decoration: underline;
 }
+
+.serverError {
+  margin-top: 0.5rem;
+  padding: 0.9rem 1rem;
+  background: #fdecea;
+  color: #611a15;
+  border-radius: 8px;
+  font-weight: 600;
+}

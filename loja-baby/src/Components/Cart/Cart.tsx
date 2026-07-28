@@ -29,13 +29,29 @@ const Cart: FC = () => {
       return;
     }
 
+    console.debug("Cart usuario:", usuario);
+
+    // Se o usuário não tiver endereço preenchido, pedir confirmação
+    let enderecoDoCliente = usuario.endereco;
+    if (!enderecoDoCliente || enderecoDoCliente.trim() === "") {
+      const seguir = window.confirm(
+        "Seu perfil não possui endereço cadastrado. Deseja continuar sem endereço (será enviado como '(não informado)')?"
+      );
+      if (!seguir) {
+        // mandar o usuário para a página de registro/login para completar dados
+        navigate("/login");
+        return;
+      }
+      enderecoDoCliente = "(não informado)";
+    }
+
     const pedido: Pedido = {
       itens,
       total: valorTotal,
       metodoPagamento: "pix",
       cliente: {
-        nome: usuario.nome, // Agora pegamos o nome real
-        endereco: usuario.endereco, 
+        nome: usuario.nome || usuario.email.split("@")[0] || "Cliente",
+        endereco: enderecoDoCliente,
       },
     };
 

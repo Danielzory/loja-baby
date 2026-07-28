@@ -26,5 +26,5 @@ ${resumoItens}
 *Total: R$ ${pedido.total}*
 Pagamento: ${pedido.metodoPagamento}
 Cliente: ${pedido.cliente.nome}
-Endereço: ${pedido.cliente.endereco}`;
+Endereço: ${pedido.cliente.endereco || "(não informado)"}`;
 }

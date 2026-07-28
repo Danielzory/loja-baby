@@ -91,6 +91,11 @@
   min-width: fit-content;
 }
 
+/* Espaçamento específico para os links de autenticação (Login / Cadastrar) */
+.actions .link:not(.cart) {
+  margin-right: 0.5rem;
+}
+
 /* ÁREA DO USUÁRIO */
 .userItem {
   display: flex;

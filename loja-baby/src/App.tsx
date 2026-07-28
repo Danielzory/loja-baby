@@ -4,6 +4,7 @@ import { CarrinhoProvider } from "./context/CarrinhoContext";
 import PaginaPrincipal from "./Components/mainPage/PaginaPrincipal.tsx";
 import CarrinhoPage from "./Components/mainPage/CarrinhoPage.tsx";
 import LoginPage from "./Components/Login/LoginPage.tsx";
+import Register from "./Components/Register/Register.tsx";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
           <Routes>
             <Route path="/" element={<PaginaPrincipal />} />
             <Route path="/carrinho" element={<CarrinhoPage />} />
-            {/* 3. Nova rota para a página de Login */}
+            {/* 3. Rotas para Login e Registro */}
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
         </CarrinhoProvider>
       </AuthProvider>

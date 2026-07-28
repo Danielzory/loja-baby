@@ -32,18 +32,95 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     setCarregando(true);
     
     try {
-      // Simulando um atraso de rede (como se estivesse indo ao banco)
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Tenta autenticar na API (se estiver configurada), caso contrário
+      // cai para um fallback local compatível com o comportamento anterior.
+      const base = (import.meta as any).env?.VITE_API_BASE || "";
+      if (base) {
+        // Se `VITE_API_BASE` estiver configurado, confiar estritamente na API.
+        try {
+          const res = await fetch(`${base.replace(/\/$/, "")}/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(dados)
+          });
 
-      // Simulando a criação de um objeto User baseado no login
-      // Na semana que vem, aqui entrará o fetch para o seu banco
+          if (res.ok) {
+            const raw = await res.json();
+            console.debug("Auth API response:", raw);
+
+            const payload = raw.usuario || raw.user || raw;
+            const userFromApi: User = {
+              id: payload.id || payload._id || crypto.randomUUID(),
+              nome:
+                payload.nome ||
+                payload.name ||
+                [payload.first_name, payload.last_name].filter(Boolean).join(" ") ||
+                payload.fullName ||
+                payload.full_name ||
+                "",
+              email: payload.email || payload.username || dados.email,
+              telefone:
+                payload.telefone ||
+                payload.phone ||
+                payload.celular ||
+                payload.mobile ||
+                payload.telefone_celular ||
+                "",
+              endereco:
+                payload.endereco ||
+                payload.address ||
+                payload.address_line_1 ||
+                payload.address_line ||
+                payload.endereco_completo ||
+                payload.addressLine ||
+                payload.address_line1 ||
+                "",
+              senha: ""
+            };
+
+            setUsuario(userFromApi);
+            console.debug("Normalized userFromApi:", userFromApi);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(userFromApi));
+            return;
+          }
+
+          // Se a API respondeu com status não-ok (ex.: 401), lançar erro
+          const errBody = await res.text().catch(() => "");
+          const message = `Login failed (${res.status}): ${errBody}`;
+          console.warn("Auth API returned non-ok status:", res.status, errBody);
+          throw new Error(message);
+        } catch (err) {
+          // Lançar o erro para que o chamador trate (não fazer fallback quando VITE_API_BASE estiver setada)
+          console.warn("Auth API inacessível ou erro de login:", err);
+          throw err;
+        }
+      }
+
+      // Fallback: cria um usuário local baseado no e-mail (nome não fixo)
+      // Preservar valores já salvos no localStorage (ex.: endereco)
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      const usuarioSalvoRaw = localStorage.getItem(STORAGE_KEY);
+      let enderecoSalvo = "";
+      let nomeSalvo = "";
+      try {
+        if (usuarioSalvoRaw) {
+          const parsed = JSON.parse(usuarioSalvoRaw);
+          enderecoSalvo = parsed?.endereco || "";
+          nomeSalvo = parsed?.nome || "";
+        }
+      } catch (err) {
+        // ignore parse errors
+      }
+
+      const localName = dados.email.split("@")[0] || "Usuário";
+      const capitalized = localName.charAt(0).toUpperCase() + localName.slice(1);
       const usuarioLogado: User = {
         id: crypto.randomUUID(),
-        nome: "Daniel Teste", // Nome fixo até termos o cadastro
+        nome: nomeSalvo || capitalized,
         email: dados.email,
-        telefone: "81999999999",
-        endereco: "Rua do Teste, 123", // campo obrigatório no schema de usuário
-        senha: "" // Nunca guardamos a senha no estado/storage por segurança
+        telefone: "",
+        endereco: enderecoSalvo || "",
+        senha: ""
       };
 
       setUsuario(usuarioLogado);

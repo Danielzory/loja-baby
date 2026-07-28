@@ -12,6 +12,8 @@ const Navbar: FC = () => {
 
   const totalQuantidade = itens.reduce((acc, i) => acc + i.quantidade, 0);
 
+  console.debug("Navbar usuario:", usuario);
+
   const handleLogout = () => {
     logout();
     navigate("/login");
@@ -35,14 +37,19 @@ const Navbar: FC = () => {
     {usuario ? (
       <div className={styles.userItem}>
         <span className={styles.welcome}>
-          Olá, <strong>{usuario.nome.split(" ")[0]}</strong>!
+          Olá, <strong>{(usuario.nome && usuario.nome.trim()) ? usuario.nome.split(" ")[0] : (usuario.email?.split("@")[0] || "Usuário")}</strong>!
         </span>
         <button onClick={handleLogout} className={styles.logoutBtn}>Sair</button>
       </div>
     ) : (
-      <Link to="/login" className={styles.link} style={{marginRight: '1rem'}}>
-        Login
-      </Link>
+      <>
+        <Link to="/login" className={styles.link}>
+          Login
+        </Link>
+        <Link to="/register" className={styles.link}>
+          Cadastrar
+        </Link>
+      </>
     )}
 
     <Link to="/carrinho" className={`${styles.link} ${styles.cart}`}>

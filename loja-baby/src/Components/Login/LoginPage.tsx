@@ -3,8 +3,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema, type LoginData } from "../../types"; // O Schema que criamos antes!
 import { useAuth } from "../../context/AuthContext";
 import styles from "./LoginPage.module.css";
+import { useState } from "react";
 import imgLogin from "../../assets/imgLoginPAge.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const LoginPage = () => {
   const { login } = useAuth();
@@ -21,12 +22,19 @@ const LoginPage = () => {
 
   const onSubmit = async (dados: LoginData) => {
     try {
+      setServerError(null);
       await login(dados);
       navigate ("/")
-    } catch (error) {
+    } catch (error: any) {
       console.error("Erro ao fazer login", error);
+      const msg = String(error?.message || "Erro ao autenticar");
+      if (msg.includes("401")) setServerError("E-mail ou senha incorretos.");
+      else if (msg.toLowerCase().includes("network") || msg.toLowerCase().includes("inacess")) setServerError("Servidor inacessível. Tente mais tarde.");
+      else setServerError(msg);
     }
   };
+
+  const [serverError, setServerError] = useState<string | null>(null);
 
   return (
     <div className={styles.container}>
@@ -61,12 +69,13 @@ const LoginPage = () => {
 
           <div className={styles.linksContainer}>
             <a href="#" className={styles.link}>Esqueci minha senha</a>
-            <a href="#" className={styles.link}>Criar conta</a>
+            <Link to="/register" className={styles.link}>Criar conta</Link>
           </div>
 
           <button type="submit" disabled={isSubmitting} className={styles.button}>
             {isSubmitting ? "Carregando..." : "Entrar"}
           </button>
+          {serverError && <div className={styles.serverError}>{serverError}</div>}
         </form>
       </section>
 
